@@ -23,3 +23,7 @@
 
 // ? Why Objects?
 // encapsulation: the idea of bundling together related values
+// The browser window and the elements it visualizes are all represented in memory as JS objects.
+// Those elements and most of their properties, including their styling, are represented as JS objects.
+// Data submitted from the browser will be accessed on the backend server as objects.
+// Data retrieved from a database will be stored in objects.
