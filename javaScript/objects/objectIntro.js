@@ -1,17 +1,5 @@
-// * Creating Objects
+
 const prompt = require('prompt-sync')();
-// By using Object Literal Notation (also called an Object Initializer)
-// By invoking a Class (also known as a Constructor Function)
-// By using the Object.create method
-
-// ? create our first object
-
-const game = {};
-console.log(typeof game);
-// output: object
-// * an object with no values is still an empty object.
-// the stuff inside the object is referred to as //* properties.
-
 // * properties
 // made of key and value pairs
 
