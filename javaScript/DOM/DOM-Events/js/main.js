@@ -16,6 +16,9 @@ const inputEl = document.querySelector('input');
 const ulEl = document.querySelector('ul');
 
 btn.addEventListener('click', function(evt) {
+  console.log(evt);
+  console.log(evt.target);
+  //<button>Add Comment</button>
     const newCommentEl = document.createElement('li');
     const commentText = inputEl.value;
   // Set newComment's text
