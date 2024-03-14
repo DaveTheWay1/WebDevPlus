@@ -30,3 +30,45 @@ const tally = votes.reduce((acc, vote) => {
 }, {});  // Note the initial value is an empty object
 
 // tally -> {"No": 2, "Yes": 3}
+
+
+// ***** for better understanding: 
+
+const numbers = [1,-1,2,3]
+// let sum1 = 0;
+
+// for (let n of numbers){
+//   sum1 += n;
+// }
+// console.log(sum1);
+// output:5
+
+const sum2  = numbers.reduce((accumalator, currentValue) => {
+  return accumalator + currentValue;
+}, 0)
+console.log(sum2);
+
+// * break down:
+// starting off: accumalator = 0. current value = 1. 
+// after execution accumalator = 1
+// starting off AFTER execuation.. accumalator = 1, current value = -1
+// AFTER execution.. accumalation = 0
+// starting the next round accumalation = 0, currentValue = 2
+// accumalation = 2, current value = 3
+// result 5
+
+// * a shorter way is exluding the 0 included in line 48
+const sum3  = numbers.reduce((accumalator, currentValue) => {
+  return accumalator + currentValue;
+})
+console.log(sum3);
+// * accumalator = 1, current value = -1
+// * after execution.. accumalator = 0
+// * next round.. accumalator = 0 current value = 2
+// * After execution accumalator = 2, current value = 3
+// * result = 5;
+
+// * and even shorter...
+const sum4  = numbers.reduce((accumalator, currentValue) => accumalator + currentValue);
+console.log(sum4);
+// 5
