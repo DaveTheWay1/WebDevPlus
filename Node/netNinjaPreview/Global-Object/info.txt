@@ -1,0 +1,10 @@
+The global object is the window object
+- we can access properties and methods on that window object such as 
+alert scroll or set timer etc.
+
+But when we write javascript in node the global object is no longer the 
+window object
+- the global object in node is an object called global
+
+the global object in node called global 
+- gives us access to methods we can use in node.js
