@@ -1,0 +1,8 @@
+Express
+
+- Easy and flexible routing system
+- Integrates with many templating engines
+- Contains a middleware framework
+
+- express is just a module written in javascript 
+that we can use in our application
