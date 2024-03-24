@@ -1,0 +1,13 @@
+What is a query string?
+it is additional data being added onto an  http request in 
+the form of name value pairss
+
+often seen in blog posts.
+
+ex:
+mysite.com/blog/news?page=2
+the page would be 2
+
+the start of a query string is at the '?'
+
+mysite.com/contact?person=ryu&dept=marketing
