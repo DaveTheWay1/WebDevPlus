@@ -1,3 +1,0 @@
-Middleware
-
-is the code that runs between the request and the response
