@@ -16,5 +16,19 @@
     <!-- displays: -->
     <!-- Age: 24
     Job: software engineer -->
+    <h2>Hobbies</h2>
+    <ul>
+        <!-- when you are displaying code you only need.. 
+            an opening <% 
+            and closing $> 
+        -->
+        <% data.hobbies.forEach(function(item){ %>
+            <!-- when you are displaying data you need
+                and opening <%= with an equal sign** 
+                and closing %> no equal sign
+            -->
+            <li><%= item %></li>
+        <% }); %>
+    </ul>
 </body>
 </html>

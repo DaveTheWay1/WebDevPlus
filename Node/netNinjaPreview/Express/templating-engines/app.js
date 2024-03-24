@@ -27,7 +27,7 @@ app.get('/contact/page',function(req,res){
 // its default behavior. rather we just pass the name of the view
 app.get('/profile/:name', function(req,res){
     // to pass in more data we can do like the below
-    var data = {age: 24, job: 'software engineer'};
+    var data = {age: 24, job: 'software engineer', hobbies:['coding', 'studying', 'morning runs']};
     // then, to acces ^ we can pass it in like below
     res.render('profile', {person:req.params.name, data:data});
 });
@@ -36,4 +36,3 @@ app.get('/profile/:name', function(req,res){
 // Job: software engineer
 
 app.listen(3000);
-
