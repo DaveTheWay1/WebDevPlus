@@ -1,0 +1,16 @@
+<!-- ejs allows you to be able to structure it just like an html doc
+    but you can also included javascript and data into it-->
+<!-- displays: Welcome to the profile of david -->
+
+<!-- displays: -->
+    <!-- Age: 24
+    Job: software engineer 
+-->
+<!-- when you are displaying code you only need.. 
+    an opening <% 
+    and closing $> 
+-->
+<!-- when you are displaying data you need
+    and opening <%= with an equal sign** 
+    and closing %> no equal sign
+-->

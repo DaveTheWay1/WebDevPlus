@@ -1,0 +1,7 @@
+to install express in a project folder:
+
+npm install express
+
+to uninstall express from a project folder:
+
+npm uninstall express
