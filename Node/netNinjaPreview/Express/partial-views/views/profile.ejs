@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <!-- ejs allows you to be able to structure it just like an html doc
+    but you can also included javascript and data into it-->
+    <h1>Welcome to the profile of <%= person %></h1>
+    <!-- displays: Welcome to the profile of david -->
+    <p><strong>Age: <%= data.age %></strong></p>
+    <p><strong>Job: <%= data.job %></strong></p>
+    <!-- displays: -->
+    <!-- Age: 24
+    Job: software engineer -->
+    <h2>Hobbies</h2>
+    <ul>
+        <!-- when you are displaying code you only need.. 
+            an opening <% 
+            and closing $> 
+        -->
+        <% data.hobbies.forEach(function(item){ %>
+            <!-- when you are displaying data you need
+                and opening <%= with an equal sign** 
+                and closing %> no equal sign
+            -->
+            <li><%= item %></li>
+        <% }); %>
+    </ul>
+</body>
+</html>
