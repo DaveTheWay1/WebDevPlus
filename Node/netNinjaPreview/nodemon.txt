@@ -1,0 +1,13 @@
+what does nodemon do?
+it automatically restarts the server upon a save
+so that us as developers do not have to restart
+after every change
+
+to install globally 
+npm install -g nodemon
+
+now.. instead of typing node app.. we can type:
+nodemon app.js
+
+and now the server restarts on its own without the need
+of typing node app or nodemon app.js every time

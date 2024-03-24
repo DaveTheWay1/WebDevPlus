@@ -1,0 +1,14 @@
+JavaScript Enginers
+
+- Computers do not underestand javascript
+
+- A Javascript engine takes JavaScript, and converts it into something it
+does understand - machine code.
+
+Node.js is actually written in c++ but it allows for us to use javascript
+which can run on a computer or sever
+
+its in C++ bc it uses the v8 javascript engine which is also created in
+C++
+
+In all, we get a V8 engine through Node.js bc of how c++ uses v8 engine

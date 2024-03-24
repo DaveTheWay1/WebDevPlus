@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    border: solid black 1px;
+    height: 100vh;
+    /* * vh stands for viewport height.. which refers to the height of the entire
+    * web page view. setting it to 100 takes 100% of that height. 
+    it does not take the width though, the width would be vw */
+    margin: 0;
+    font-family: Helvetica;
+    display: grid;
+    /* * used to create a grid layout container. When applied to an element, it turns 
+    * that element into a grid container, allowing you to place its child elements 
+    * (grid items) into rows and columns. */
+    /* mobile first - single column */
+    grid-template-columns: 1fr;
+    /* * The grid-template-columns property in CSS is used to define the number and 
+    * size of columns in a grid container./  you are defining a single column with a width of 1fr*/
+    /* * The fr unit (short for "fraction") is a flexible unit that represents a fraction of the 
+    * available space in the grid container. */
+    /* * 1fr means that the column will take up one fraction of the available space, 
+    * essentially making it take up the entire width of the grid container. 
+    * If you have multiple columns defined with 1fr, they will each take up an equal 
+    * portion of the available space. */
+    /* * COLUMNS IMPACTS WIDTH */
+    grid-template-rows: 50px 30px auto 100px;
+    /* * ROW IMPACTS HEIGHTS // bc i have 4 rows, 50px applies to the 1st, 30 to the 2nd
+    * auto to the third, and 100 to the last.. the AUTO takes up what is left!!*/
+    grid-template-areas: 
+        "hdr"
+        "ftr"
+        "content"
+        "side";
+        /* these work bc they're in the order of the grids that it already created
+        and is aware of */
+        /* * we're essentially just creating variables to reference them from this point
+        /* * forward */
+}
+
+header {
+    border: solid black 1px;
+    grid-area: hdr;
+    /* * This declaration essentially tells the grid layout that the header element 
+    * should be placed in the hdr area of the grid. This way, the grid layout knows 
+    * where to position the header element within the grid, based on the layout you've 
+    * defined with grid-template-areas. */
+    background-color: #ff9e7a;
+}
+
+footer {
+    border: solid black 1px;
+    grid-area: ftr;
+    background-color: #b1fcc8;
+}
+
+aside {
+    border: solid black 1px;
+    grid-area: side;
+    background-color: #ffe07a;
+}
+
+main {
+    border: solid black 1px;
+    grid-area: content;
+    background-color: #bf9df7;
+}
+
+header, footer, aside, main {
+    /* border: solid black 1px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* * WITHOUT DISPLAY FLEX!!! JUSTIFY CONTENT AND ALIGN ITEMS WOULD NOT WORK */
+}
+
+@media only screen and (min-width: 768px) {
+    body {
+      /* tablet - two column display */
+        grid-template-columns: 1fr 4fr;
+        /* * in this case the 1fr impacts the header and the 4fr impacts the aside
+        * the larger the number the smaller the width space */
+        grid-template-rows: 50px auto 30px;
+        /* * the above causes the header, main, and footer to stay as is.
+        * bc aside column is being impacted and not mentioned again in rows
+        * it allows for the aside to move to the side */
+        grid-template-areas: 
+        "hdr hdr"
+        "side content"
+        "ftr ftr";
+        /* * again we are redefining here */
+        /* * we no longer mentioned the main here because we dont really need it 
+        * to do anything more. 
+        the header was mentioned bc we needed to make sure it stayed there
+        the side was mentoined so that it eventually moves to the side
+        the footer was mentioned to have it moved to the bttm
+        while the main just basically needs to stay there.*/
+        /* the order still matters */
+        
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    main{
+        background-color: blue;
+    }
+}

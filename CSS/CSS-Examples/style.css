@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+h1{
+    border: solid black 1px;
+}
+#todos-container > article {
+/* * ^ direct child selector ex. part of the combinators */
+    height: 4rem;
+    width: 20rem;
+    border: 0.5rem solid orange;
+    /* Add padding on all four sides so 
+    our content doesnt touch the border*/
+    padding: 0.5rem;
+    /* Add margin on all four sides 
+    to add space around instead of
+    touching other elements*/
+    margin: 1rem;
+}
+#todos-container{
+    margin-top: 1rem;
+    border: 0.3rem dotted orange;
+    border-radius: 0.5rem;
+}
+/* ^ id selector */
+input.todo-input{
+    margin-top: 2rem;
+}
+/* * ^ class selector on any input that has the class todo-input */
+
+/* Matches elements that have a 'style' attribute */
+/* [style] { ... }
+
+/* Targets anchor tags with an 'href' set to "#about" */
+/* a[href="#about"] { ... }  */
+
+/* * ^ attribute selectors, less common */
+
+/* * Combinators */
+/* * descendant selector. */
+/* The most common combinator */
+
+/* This will match all <span> tags nested anywhere within an <h3> tags with a class of "sub-title" */
+/* * h3.sub-title span { ... } */
+
+/* * The child selector */
+/* Selects all <p> tags that are direct children of a <div> */
+/* * div > p {...} */
+/* it only matches elements that are direct children, that is, nested only one-level deep: */
