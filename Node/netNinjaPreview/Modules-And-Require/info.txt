@@ -1,3 +1,0 @@
-We don't just put all our code into one file rather we create modules
-to keep it all seperated and organized. A different module for a diff 
-functionality/logic
