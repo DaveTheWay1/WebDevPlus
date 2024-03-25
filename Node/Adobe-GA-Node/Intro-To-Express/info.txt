@@ -1,0 +1,269 @@
+Express
+
+The Three Fundamental Capabilities of Web Application Frameworks
+the code we’re about to write in this lesson runs on the “back-end” 
+Web Application Frameworks such as Express help developers code web applications that run on the back-end.
+
+Regardless of which specific Web Framework we choose to use, 
+they all provide three capabilities fundamental to developing a 
+web application that runs on a server in the cloud:
+The ability to define routes
+The ability to process HTTP requests using middleware
+The ability to use a view engine to render dynamic templates
+
+
+
+Intro to the Express Framework
+Express is the most popular web framework for Node.js.
+It is minimalistic and lightweight, especially when compared to massive frameworks like Django and Rails.
+
+Express uses Node’s built-in HTTP module to listen for, and respond to, 
+HTTP requests - Express simply adds those three web application capabilities on top of Node.
+
+Install the Express Module
+We use npm to install the Express module in this project:
+npm i express
+***Note that i is a shortcut for install
+Create a server.js module to put our web app’s main code in:
+touch server.js
+
+
+4. Express - Hello World!
+Let’s write the obligatory “Hello World!” application:
+see server.js...
+
+5. Basic Structure of the Express Server
+// Require modules
+const express = require('express');
+  
+// Create the Express app
+const app = express();
+  
+// Configure the app (app.set)
+  
+  
+// Mount middleware (app.use)
+  
+  
+// Mount routes
+app.get('/', function (req, res) {
+  res.send('<h1>Hello World!</h1>');
+});
+  
+// Tell the app to listen on port 3000
+app.listen(3000, function() {
+  console.log('Listening on port 3000');
+});
+
+see server.js...
+
+6. Auto-Restart the Server Using Nodemon
+nodemon is a popular development tool used to automatically restart the Express app when we save changes.
+You may have installed it during installfest, however, you can make sure you have the latest version by running:
+npm i -g nodemon
+
+Command line tools are installed using the -g (global) option
+
+If you received an error during the install, there’s a workaround by using:
+
+npx nodemon <module name>
+instead of
+
+nodemon <module name>
+
+Now, thanks to the main entry in package.json, we can start the server by simply typing nodemon (or npx nodemon).
+(bc when installing npm init we had set the the main entry to server.js)
+
+Back to routing…
+Like most web frameworks, Express uses the HTTP Method and the Path/Endpoint of the HTTP request to match a route defined in the application.
+In our first route, we defined a route using the get method on the Express app object.
+
+The get method defines a route that listens for a GET request. There are other methods such as post, put and delete, that map to the other HTTP verbs.
+The first argument provided to app.get, /, defines the path for the route. In this case the root of the application, i.e., just the host name like localhost:3000.
+In Express, all strings used to define a path should start with a forward-slash character (/).
+
+7. The Route’s Callback
+The second argument provided to app.get() is a callback function that is executed by Express when the server receives an HTTP Request that matches the route:
+app.get('/', function(req, res) {
+  res.send('<h1>Hello Express</h1>');
+});
+
+?? What part(s) of the HTTP Request does Express use when determining what route the request matches ??
+The HTTP Method and the Path/Endpoint
+
+When Express calls the callback function it will provide two objects as arguments…
+
+8. Request & Response Objects
+The callback function defines two parameters conventionally named req & res:
+
+req: 
+Represents Express’s request object has properties and methods used to access information regarding the current HTTP request, including any data being sent from the browser.
+
+res: 
+Represents Express’s response object has properties and methods used to end the request/response cycle - like we’ve done so far using the res.send method.
+
+Review Question - Routing
+Assuming the following two routes:
+
+app.get('/cars', function(req, res) {
+  res.send("Here's a list of my cars...");
+});
+
+app.post('/cars', function(req, res) {
+  res.send('Thanks for the new car!');
+});
+Yes, because they defined to match different HTTP Methods which makes those two routes unique.
+
+9. Ways to Respond to a Request
+So far we have responded in our route handler (the callback function) by using the res.send() method.
+The Express docs for the Response object lists the other ways to respond to an HTTP request.
+
+Here are the common methods we’ll be using during the course:
+
+res.render(): Render a view template and send the resulting HTML to the browser.
+res.redirect(): Tell the browser to issue another GET request.
+res.json(): Send a JSON response (used when we communicate via AJAX).
+
+10. Rendering Views
+One of the three fundamental capabilities of a web framework discussed earlier is to be able to use a view engine to render dynamic templates.
+A template can include a mixture of static (unchanging) HTML and “code” that generates HTML dynamically.
+
+For example, code in a template could generate a series of <li> elements for data provided to it in an array.
+
+View Engines
+In Express, we use res.render() to process a template using a view engine and return the resulting HTML to the browser.
+Express can work with a multitude of view engines, including:
+
+Pug (formerly Jade) - A template language that leverages indentation to create HTML with a “shorthand” syntax.
+EJS (Embedded JavaScript) - A super cool templating language that, like the name says, embed JavaScript within the HTML!
+
+Create the views/home.ejs View
+Let’s use EJS to render a “home” view for the existing GET /home route.
+Most Express applications are architected using the MVC design pattern, so let’s put all the templates inside of a folder named views:
+
+mkdir views
+touch views/home.ejs
+ejs is the file extension for the EJS view engine.
+
+Open home.ejs then type ! and press tab to generate the HTML boilerplate:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+      content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First Express</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+For now, we will need to include the HTML boilerplate inside of every view.
+
+However, EJS includes the ability to make our views more DRY by using partial views. 
+We will cover partial views later, however, if you can’t wait, check out how to use the include() function here.
+
+app.get('/home', function(req, res) {
+  res.render('home');
+});
+
+we refactor and run the code and we get the error:
+Error: No default engine was specified and no extension was provided.
+
+We forgot to configure the app!! (app.set)
+app.set('view engine', 'ejs'); see server.js...
+and now.. after doing so it will run
+
+We also need to inform Express where all of our views can be found:
+see server.js...
+// Configure the app (app.set)
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+Don’t be intimidated by the code:
+path.join(__dirname, 'views')…
+path.join() is simply a Node method that builds a properly formatted path from segment strings passed to it.
+
+__dirname is available in Node modules and represents the path of the current folder where the currently running code lives; 
+and views is the name of the folder we created to hold our views.
+
+require() the path Module
+path is a core Node module, but it still must be required before we can use it.
+Core Node modules don’t have to be installed with npm install, but we do have to require them:
+see server.js
+
+
+now... aftering doing all the above the next error still might be: 
+Error: Cannot find module ‘ejs’
+tells us that we need to install the EJS view engine:
+npm i ejs
+We don’t need to require the view engine - Express knows how to find it.
+
+11. Dynamic Templating Using EJS
+Thus far, we’ve only rendered a static template(ex: h1, static bc theres no code to change it), but now it’s time to use EJS to dynamically generate HTML!
+
+n addition to passing the template name as an argument to res.render() method, we can also pass in a JavaScript object as a second argument and all of its properties will be accessible in the view within ejs tags!
+
+Let’s get to work rendering the list of To Dos…
+
+Create the data/todo-db.js Module
+Normally, the To Dos would be coming from a database, however, we’ll “fake” a DB by putting the To Dos in a module and export a method to return them.
+Let’s create the module:
+
+mkdir data
+touch data/todo-db.js
+
+Start with a copy/paste of the following array of To Do objects:
+
+// data/todo-db.js
+
+const todos = [
+  {todo: 'Feed Dogs', done: true},
+  {todo: 'Learn Express', done: false},
+  {todo: 'Buy Milk', done: false}
+];
+Now let’s export a getAll() method that can be used by any other module to obtain the To Dos:
+see to-do.js...
+
+Require the data/todo-db.js Module
+To access our To Do “database”, we need to require() it inside of server.js:
+
+Add a Route to List the To Dos
+If we want to be able to implement the “To Do List” functionality, we’re going to need another another route:
+see server.js... line 35
+As discussed, to pass data to a view, we pass an object as a second argument to res.render().
+We will now be able to access a todos variable in the todos/index view!
+
+The <% %> EJS tags are for executing JavaScript such as control flow. in other words.. to show data
+The <%= %> EJS tags are for writing JS expressions into the HTML page. in other words... to do lines of javascript code
+
+12. Redirecting
+One last bit of fun…
+
+Currently, if we browse to the root route, we see “Hello Express”, however, we can use the res.redirect method to redirect to GET /home to see the Home page instead.
+
+Refactor the root route as follows:
+
+app.get('/', function(req, res) {
+  res.redirect('/home');
+});
+When the server responds with a redirect it causes the browser send a new GET request to the provided path.
+Note: It’s very important that the path provided to res.redirect() begin with a forward slash!
+
+Determining when to res.render() or res.redirect()
+
+Certain functionality requires the server to respond using res.redirect() instead of res.render():
+
+When the browser sends a GET HTTP request, the server should respond with res.render().
+Any request other than a GET method, i.e. POST, PUT or DELETE, results in data being changed on the server and typically should be responded to using res.redirect().
+
+Essential Questions (1 min)
+(1) Does the Express server "run" on the Back-End or the Front-End?
+Back-End
+(2) When we define routes on the server, we are mapping/connecting HTTP requests to ________.
+Code which performs its purpose such as creating, reading, updating or deleting data, then ultimately responds to the request using res.render() or res.redirect().
+(3) Which EJS tags do we use to emit content into the HTML page: <% %> or <%= %>?
+<%= %> ("Squids", not "Flounders")
