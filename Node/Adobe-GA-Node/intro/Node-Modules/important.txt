@@ -1,0 +1,53 @@
+if you start a Node app from scratch, the first thing you should do is create the package.json file by entering the following command:
+npm init
+
+It’s okay to accept all of the default settings. To accept the defaults without being prompted, you can run the command as follows:
+npm init -y
+
+Now, let’s use npm to download and install a package:
+npm install request
+
+There is now a node_modules folder that contains a folder for the request module and its many dependencies.
+There’s also a new package-lock.json file that npm uses to track dependencies and unlike package.json, should not be edited.
+Note: it’s highly recommended that node_modules be added to your .gitignore_global file.
+We can now require the request module in main.js and make HTTP requests:
+
+// Don't specify path when module is in node_modules
+const request = require('request');
+request(
+  'http://jsonplaceholder.typicode.com/users',
+  function(err, res, body) {
+    console.log(body);
+  }
+);
+Note the first parameter in the callback is err.
+This “error-first” callback signature is prevalent throughout Node.
+Type node main to try it out.
+
+Examining the packages.json file reveals that it’s structured something like this:
+
+{
+  "name": "first-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "User <email@user.com>",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
+
+The package.json is used to install a project’s dependencies.
+
+Installing dependencies is necessary after cloning a repo or when using starter code for a lesson.
+
+To demonstrate this, first delete the node_modules file, then…
+
+Now we can install our app’s dependencies like this:
+
+npm install
+Witness the return of node_modules!
