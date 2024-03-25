@@ -1,0 +1,12 @@
+POST Requests
+
+- A request method
+- POST requests, ask the server to accept/store data which is enclosed in the body
+of the request
+- Often used when submitting forms. When data is posted in the server
+
+
+must install:
+npm install body-parser
+
+we then add it and require it to our app.js
