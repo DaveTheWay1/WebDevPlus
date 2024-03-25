@@ -1,0 +1,75 @@
+Node Modules
+Modules in Node allow us to modularize and reuse code in a Node app.
+Modules can contain any number of JS functions and related data.
+
+
+Modules Built Into Node
+Node itself comes with several core modules, such as the http and fs modules.
+see main.js..
+
+
+Our Own Node Modules
+In a Node application, every JavaScript file is a module!
+A Node app’s modules (files) can be put in any folder within 
+the project allowing us to create modules inside of aptly named folders, such as models, routes, controllers, views, etc.
+
+A module is “loaded” into a Node app using Node’s require function - just like we did to load the fs module.
+
+Every Node module has a global module object 
+see dats-of-week.js..
+
+Each module is uniquely identified by its fully qualified filename (including the folder path). This allows modules to be named the same, as long as they exist in different folders.
+The property on module that we’re really interested in though is exports…
+
+module.exports
+The exports property on the module variable is used to “export” whatever functionality should be exposed by the module…
+
+Exporting a Single Piece of Functionality
+Whatever is assigned to module.exports can be accessed by any number of other modules using the require function we saw earlier.
+see day-of-week.js..
+It is convention to name the variable the same as, or similar to, the name of the module being required.
+When we require our app’s own modules, we need to always provide a relative path, i.e., starting with either a . or ..
+
+
+Exporting Lot’s of Functionality
+module.exports is initialized to an empty object by default allowing us to easily create properties on it.
+Creating properties on module.exports is a way to expose multiple pieces of functionality.
+see day-of-week.js
+
+Another common approach to exporting multiple pieces of functionality would be to assign a new object like this:
+
+exports Shortcut Variable
+Node also provides a “shortcut” variable named exports that references that very same object that module.exports does.
+For example, could do this:
+exports.weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+instead of:
+module.exports.weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+IMPORTANT: It is not possible to assign functionality to the exports shortcut variable because it will stop referencing module.exports.
+
+Module Miscellaneous
+Since modules are about code reuse, they can be required an unlimited number of times throughout the application.
+***The code in the module only runs the first time the module is required.
+*** so when it is first req by another module, since the module already been loaded it just returns the value module.exports holds so it doesnt run it again since it basically already has and has the info on module.
+Any variables declared within a module are local to the module - they do not pollute the global scope.
+The global scope in a Node application is represented by an object named global, unlike the browser’s ________ object.
+
+
+Review Questions - Modules
+(1) What are modules used for in Node?
+Node modules are used to modularize, organize code into separate files, making the functionality they export reusable by any other module.
+(2) What object in a Node module can we use to attach or assign functionality to?
+module.exports
+(3) How many times can we require a module in our program?
+As many times as you need to
+
+(4)Assuming the following code:
+
+// add.js module
+exports = function (x, y) { return x + y };
+and
+
+// use the add.js module
+const add = require('./add');
+let sum = add(5, 10);
+(4) Why won't the following code work as intended?
+Assigning a single piece of functionality to the exports shortcut/convenience variable doesn't work. We can only add properties to it.
