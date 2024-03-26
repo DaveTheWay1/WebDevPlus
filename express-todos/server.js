@@ -29,14 +29,13 @@ app.get('/', (req,res)=>{
     res.send('Hello World');
 });
 
+app.use(express.static('public'));
+
 //      RESTful routing (representational state tansfer)
 //      a convetion that we use to delevope hgihly descriptive url tasks
 app.get('/todos', (req,res)=>{
     // res.send(todosList);
-    res.render('todos.ejs', 
-    // ejs is a plug in module.. meaning no need to install
-    {todos: todosList});
-    // ^context object 
+    res.render('todos', {todos: todosList});
 });
 
 // ** tell the application to listen for a request on port 3000
