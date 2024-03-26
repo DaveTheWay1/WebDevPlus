@@ -125,3 +125,87 @@ const calendarRouter = require('./routes/calendar');
 app.use('/calendar', calendarRouter);
 ❓ What is the actual path of the above route?
 The starts with path is /calendar and the path of the defined route is /today making the actual path /calendar/today
+
+5. To-Do Refactor
+We’re going to refactor the To-Do code from yesterday to follow best practices by:
+Copying over the index.ejs view and put the todos “database” into the models folder.
+Implementing best-practice routing.
+Organizing the route handling code into a controller functions (AKA controller actions).
+
+To-Do Refactor - index.ejs
+Create todos/index.ejs:
+  mkdir views/todos
+  touch views/todos/index.ejs
+
+
+Add the HTML boilerplate.
+Update the title to: <title>Express To-Do</title>
+Here’s the EJS from yesterday to copy/paste (replacing the existing <body> element):
+<body>
+     <h1>Todos</h1>
+     <ul>
+       <% todos.forEach(function(t) { %>
+         <li>
+           <%= t.todo %>
+             - 
+           <%= t.done ? 'done' : 'not done' %>
+         </li>
+       <% }); %>
+     </ul>
+</body>
+
+To-Do Refactor - models/todo.js
+Now let’s create and copy over our model.
+Create models/todo.js:
+  touch models/todo.js
+Note that modules for models should be named singularly.
+Here’s the slightly refactored code from yesterday, copy it into models/todo.js:
+const todos = [
+    {id: 125223, todo: 'Feed Dogs', done: true},
+    {id: 127904, todo: 'Learn Express', done: false},
+    {id: 139608, todo: 'Buy Milk', done: false}
+  ];
+	
+  module.exports = {
+    getAll
+  };
+	
+  function getAll() {
+    return todos;
+  }
+To-Do Refactor - Routing
+Since we need a router for our todos resource and don’t need the routes/users.js router module that Express Generator created, we’ll modify it instead of having it lay around unused.
+First, rename the routes/users.js route module to a name that’s more appropriate for our resource - routes/todos.js.
+The renaming of routes/users.js to routes/todos.js requires a couple of changes in server.js; both when the router module is being required:
+
+
+// server.js
+  // around line 8
+  var todosRouter = require('./routes/todos');
+and when it’s being mounted:
+  // around line 23
+  app.use('/todos', todosRouter);
+In routes/todos.js, let’s remove the following code:
+  // DELETE the following...
+  /* GET users listing. */
+  router.get('/', function(req, res, next) {
+    res.send('respond with a resource');
+  });
+and add the following comment to remind us of how the router was mounted:
+  // All actual paths start with "/todos"
+
+We now want to define the route for the To-Dos index functionality 
+(display all To-Dos). However, we are not going to write an anonymous 
+inline function for the route handler. Instead, we are going to follow 
+a best practice of putting the function in a controller module that 
+can export any number of controller actions (functions).
+Here’s the route that uses a controller action that we’ll code in a bit:
+ // routes/todos.js
+  var express = require('express');
+  var router = express.Router();
+  // Require the controller that exports To-Do CRUD functions
+  var todosCtrl = require('../controllers/todos');
+  // All actual paths begin with "/todos"
+  // GET /todos
+  router.get('/', todosCtrl.index);
+  Note that the Express app is unhappy because the controller we required and the index function do not yet exist. That’s next…
