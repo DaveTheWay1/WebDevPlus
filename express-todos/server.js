@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 
 // ** configure application settings
-app.set('view engine', 'views');
+app.set('view engine', 'ejs'); // sets gloabl view to ejs
 // ** configure template engine
 // ** [coming soon] expose enviroment variables 
 // ** [coming soon] connect to databased management system 
@@ -43,3 +43,5 @@ app.get('/todos', (req,res)=>{
 app.listen(3000, () =>{
     console.log('Listening on port 3000');
 });
+
+// setting the path is no longer necessary bc express has updated to not need it anymore
