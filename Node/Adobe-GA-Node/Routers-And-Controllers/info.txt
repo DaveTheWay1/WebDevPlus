@@ -1,0 +1,31 @@
+Express Routers & Controllers
+
+Express Generator
+a popular tool: express-generator.
+express-generator creates a “skeleton” Express app that:
+Separates the HTTP server code from our web app’s logic.
+Has best practice routing implemented.
+Has key middleware configured and mounted by default.
+Is configured to serve static assets from a public folder.
+Will configure the EJS view engine (if we specify the -e option)
+Has error handling configured.
+
+Install express-generator
+npm install -g express-generator
+express-generator is a CLI that can be run from anywhere, that’s why we install it using the global -g flag.
+
+Specify the View Engine
+We’ll definitely want to use the EJS view engine each time we scaffold a new Express project.
+
+-e
+-ejs
+--view=ejs
+-v=ejs
+The help above identifies the following option flags to make EJS the view engine
+All of the above option flags do the exact same thing, kind of like the shortest one
+
+Scaffold Our express-todos App
+Let’s learn more about Express by building a simple To-Do app.
+We scaffold an app using the express command:
+express -e express-todos
+^creates an express folder called express-todos with ejs view engine 
