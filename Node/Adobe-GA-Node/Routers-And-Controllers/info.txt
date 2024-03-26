@@ -29,3 +29,42 @@ Let’s learn more about Express by building a simple To-Do app.
 We scaffold an app using the express command:
 express -e express-todos
 ^creates an express folder called express-todos with ejs view engine 
+
+We now need to cd into the new folder and open in our text editor:
+
+Install the Node Modules
+Express generator has created a package.json that lists the necessary Node modules, however, those modules are not installed.
+Let’s open a terminal session (option + backtick) and install them:
+npm i
+
+Renaming app.js to server.js
+MERN/MEAN Stack apps often have a client-side file named app.js and this could get confusing having two app.js files, thus many developers name their main Express file server.js.
+Rename app.js to server.js.
+Inside of bin/www, we need to update line 7 to require server instead of app:
+ var app = require('../app');
+to:
+ var app = require('../server');
+
+ Starting the Application
+ nodemon is still our best option and we can now just type nodemon which will use that same start script.
+ Browsing to localhost:3000 greets us
+
+ 2. MVC Code Organization
+ MVC (Model-View-Controller) has been a proven approach for organizing code for decades where the:
+
+Model: Is the data concern
+View: Is the presentation concern
+Controller: Is the “processing” concern that processes the HTTP 
+requests coming from the browser, CRUDs (Creates/Reads/Updates/Deletes) 
+data using models, and ultimately responds to the browser’s request by 
+rendering views and returning the resulting HTML or by issuing a redirect.
+
+MVC in Express
+Express, as it states on its landing page, is unopinionated. This means we are free to structure and organize our Express apps anyway we please.
+In fact, many web frameworks such as Ruby on Rails, ASP.net, Spring MVC (Java), and others implement the MVC architectural pattern.
+Accordingly, most Express developers use MVC to organize their Express applications as well…
+
+Adding a models & controllers Folder
+Express generator has already organized the view templates into a views folder.
+So we just need to make folders to hold our model and controller modules:
+
