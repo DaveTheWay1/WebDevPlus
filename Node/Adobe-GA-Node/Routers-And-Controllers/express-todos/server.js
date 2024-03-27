@@ -5,7 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+// * line 7 comes from the routes folder.. specifically
+// the module index.js as it has exported to 
+// which we grab and store it in var indexRouter
 var todosRouter = require('./routes/todos');
+// 
 
 var app = express();
 
