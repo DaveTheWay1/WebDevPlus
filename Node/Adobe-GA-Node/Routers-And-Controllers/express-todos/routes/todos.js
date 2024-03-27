@@ -6,5 +6,6 @@ var todosCtrl = require('../controllers/todos');
 
 // GET /todos
 router.get('/', todosCtrl.index);
+router.get('/:id', todosCtrl.show);
 
 module.exports = router;
